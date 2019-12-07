@@ -1,0 +1,15 @@
+tr:hover {
+  cursor: pointer;
+}
+
+th {
+  text-align: center;
+}
+
+td {
+  text-align: center;
+}
+
+.btn {
+  margin: 2px;
+}

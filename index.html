@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="robots" content="noindex">
+
+
+  <title>Tracking Checklist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="main.css">
+
+</head>
+<body>
+  <br>
+  <br>
+  <div class="container">
+    <h1 class="center">Tracking Checklist</h1>
+    <form>
+      <div class="row">
+        <div class="col">
+            <div class="form-group">
+              <label for="trackingno">Tracking #</label>
+              <input required type="text" class="form-control" id="trackingno">
+            </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="carrier">Example select</label>
+            <select class="form-control" id="carrier">
+              <option>USPS</option>
+              <option>UPS</option>
+              <option>FEDEX</option>
+              <option>OTHER</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Add New</button>
+    </form>
+
+    <br>
+    <br>
+
+
+    <table class="table table-hover table-striped table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Carrier</th>
+          <th scope="col">Status</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>
+            <button class="btn btn-sm btn-danger btn-received" data-tracking="282173892173">Not Received</button>
+            <button class="btn btn-sm btn-danger btn-delete" data-tracking="282173892173">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+          <td>
+            <button class="btn btn-success btn-received">Received</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDanJScBDl1zV-Slv2iV5ceb_-BVH2CEdU",
+    authDomain: "general-open-project.firebaseapp.com",
+    databaseURL: "https://general-open-project.firebaseio.com",
+    projectId: "general-open-project",
+    storageBucket: "general-open-project.appspot.com",
+    messagingSenderId: "508507145089",
+    appId: "1:508507145089:web:0921749d3c4b71e3809e80"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var db = firebase.firestore();
+</script>
+
+  <script src="main.js"></script>
+</body>
+</html>

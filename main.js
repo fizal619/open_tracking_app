@@ -1,0 +1,101 @@
+const form = document.querySelector('form');
+const tbody = document.querySelector('tbody');
+let packages = {};
+
+const render = () => {
+  tbody.innerHTML = '';
+
+  const packageKeys = Object.keys(packages);
+
+  packageKeys.reduce((p,c,i) => {
+    if (packages[c].received) {
+      return p.concat([c]);
+    } else {
+      return [c].concat(p);
+    }
+  }, [])
+  .forEach(packageKey => {
+    const package = packages[packageKey];
+    tbody.innerHTML += `
+
+    <tr>
+      <td>${package.tracking_number}</td>
+      <td>${package.carrier}</td>
+      <td>${package.status || '<img src="https://weeve.network/images/Loader.gif" height="40px">'}</td>
+      <td>
+        <button
+          class="btn btn-sm btn-${package.received ? 'success' : 'danger'} btn-received"
+          data-tracking_number="${package.tracking_number}">
+          ${package.received ? 'Received' : 'Not Received'}
+          </button>
+        <button
+          class="btn btn-sm btn-danger btn-delete" data-tracking_number="${package.tracking_number}">
+            Delete
+        </button>
+      </td>
+    </tr>
+
+    `;
+  });
+}
+
+const update = async () => {
+  console.log("UPDATE");
+  packages = {};
+
+  try {
+    const collection = await db.collection("tracking_checklist").get();
+    collection.forEach(packageRef => {
+      const package = packageRef.data();
+      packages[package.tracking_number] = package;
+    });
+    render();
+  } catch (e) {
+    console.error(e);
+  }
+
+}
+
+form.onsubmit = async (e) => {
+  e.preventDefault();
+  const data = {
+    tracking_number: e.target.trackingno.value,
+    carrier: e.target.carrier.value,
+    received: false
+  }
+
+  if (data.tracking_number == '') return 0;
+
+
+  console.log(data);
+
+  try {
+    const write = await db.collection("tracking_checklist").doc(data.tracking_number).set(data);
+  } catch (e) {
+    console.error(e);
+  }
+
+
+  e.target.trackingno.value = '';
+  update();
+}
+
+update();
+
+tbody.addEventListener('click', e =>{
+  if (e.target.classList.contains('btn-received')) {
+
+  }
+
+  if (e.target.classList.contains('btn-delete')) {
+    console.log("DELETE");
+    db.collection("tracking_checklist")
+      .doc(e.target.dataset.tracking_number)
+      .delete()
+      .then(update)
+      .catch(console.error);
+
+  }
+
+});
+
