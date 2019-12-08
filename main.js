@@ -1,10 +1,15 @@
 const form = document.querySelector('form');
 const tbody = document.querySelector('tbody');
+const table = document.querySelector('table');
+
+
 let packages = {};
 
 const render = () => {
-  tbody.innerHTML = '';
+  tbody.innerHTML = '<img src="https://weeve.network/images/Loader.gif">';
   const packageKeys = Object.keys(packages);
+  let bodyStr = '';
+
   packageKeys.reduce((p,c,i) => {
     if (packages[c].received) {
       return p.concat([c]);
@@ -14,7 +19,7 @@ const render = () => {
   }, [])
   .forEach(packageKey => {
     const package = packages[packageKey];
-    tbody.innerHTML += `
+    bodyStr += `
 
     <tr>
       <td>${package.note}</td>
@@ -35,6 +40,7 @@ const render = () => {
     </tr>
 
     `;
+    tbody.innerHTML = bodyStr;
   });
 }
 
