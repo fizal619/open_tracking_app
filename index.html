@@ -23,13 +23,19 @@
       <div class="row">
         <div class="col">
             <div class="form-group">
+              <label for="note">Note</label>
+              <input required type="text" class="form-control" id="note">
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
               <label for="trackingno">Tracking #</label>
               <input required type="text" class="form-control" id="trackingno">
             </div>
         </div>
         <div class="col">
           <div class="form-group">
-            <label for="carrier">Example select</label>
+            <label for="carrier">Carrier</label>
             <select class="form-control" id="carrier">
               <option>USPS</option>
               <option>UPS</option>
@@ -43,12 +49,14 @@
     </form>
 
     <br>
+    <p>Note: Tracking data updated every hour or so. ⌚</p>
     <br>
 
 
     <table class="table table-hover table-striped table-dark">
       <thead>
         <tr>
+          <th scope="col">Note</th>
           <th scope="col">#</th>
           <th scope="col">Carrier</th>
           <th scope="col">Status</th>
@@ -61,16 +69,8 @@
           <td>Otto</td>
           <td>@mdo</td>
           <td>
-            <button class="btn btn-sm btn-danger btn-received" data-tracking="282173892173">Not Received</button>
+            <button class="btn btn-sm btn-primary btn-received" data-tracking="282173892173">Mark Received</button>
             <button class="btn btn-sm btn-danger btn-delete" data-tracking="282173892173">Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>
-            <button class="btn btn-success btn-received">Received</button>
           </td>
         </tr>
       </tbody>
