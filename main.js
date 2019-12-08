@@ -40,8 +40,8 @@ const render = () => {
     </tr>
 
     `;
-    tbody.innerHTML = bodyStr;
   });
+  tbody.innerHTML = bodyStr;
 }
 
 const update = async (coll) => {
