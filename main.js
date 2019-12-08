@@ -25,7 +25,7 @@ const render = () => {
       <td>${package.note}</td>
       <td>${package.tracking_number}</td>
       <td>${package.carrier}</td>
-      <td>${package.status || '<img src="https://weeve.network/images/Loader.gif" height="40px">'}</td>
+      <td>${package.status || package.carrier == 'OTHER' ? '-' : false || '<img src="https://weeve.network/images/Loader.gif" height="40px">'}</td>
       <td>
         <button
           class="btn btn-sm btn-${package.received ? 'success' : 'primary'} btn-received"
