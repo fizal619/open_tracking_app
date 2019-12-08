@@ -22,17 +22,21 @@ const main = async () => {
     if (data.received || data.carrier == 'OTHER') return 0;
 
     console.log('getting status of ' + data.tracking_number);
+    try {
+      const tracking_req = await axios.get(req_url, {
+        headers: {
+          'API-Key': process.env.TRACKING_TOKEN
+        }
+      });
 
-    const tracking_req = await axios.get(req_url, {
-      headers: {
-        'API-Key': process.env.TRACKING_TOKEN
-      }
-    });
+      data['status'] = tracking_req.data.status_description;
+      console.log('saving ' + data.tracking_number);
+      await db.collection('tracking_checklist').doc(data.tracking_number).set(data);
+      await sleep(1000);
+    } catch (e) {
+      console.log(e);
+    }
 
-    data['status'] = tracking_req.data.status_description;
-    console.log('saving ' + data.tracking_number);
-    await db.collection('tracking_checklist').doc(data.tracking_number).set(data);
-    await sleep(1000);
   });
 }
 
