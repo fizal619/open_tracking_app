@@ -19,7 +19,7 @@ const main = async () => {
     const data = doc.data();
     const req_url = `https://api.shipengine.com/v1/tracking?carrier_code=${data.carrier.toLowerCase()}&tracking_number=${data.tracking_number}`;
 
-    if (data.received || data.carrier != 'OTHER') return 0;
+    if (data.received || data.carrier == 'OTHER') return 0;
 
     console.log('getting status of ' + data.tracking_number);
 
